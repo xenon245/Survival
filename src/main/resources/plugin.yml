@@ -1,6 +1,6 @@
 main: com.github.xenon.survival.TeamSurvivalPlugin
 version: 1.0
-name: Team-Survival
+name: Survival
 api-version: 1.16
 depend: [Kotlin, ProtocolLib]
 commands:
