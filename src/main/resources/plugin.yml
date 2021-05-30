@@ -1,5 +1,9 @@
-main: com.github.monulo.sampleplugin.SamplePlugin
+main: com.github.xenon.survival.TeamSurvivalPlugin
 version: 1.0
-name: Tap-Sample-Plugin
+name: Team-Survival
 api-version: 1.16
 depend: [Kotlin, ProtocolLib]
+commands:
+  svl:
+    permission: op
+    description: command for team-survival

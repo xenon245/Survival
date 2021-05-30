@@ -28,7 +28,7 @@ debug=true
 debug_port=5005
 backup=false
 restart=false
-memory=2
+memory=8
 plugins=(
 EOF
     for plugin in "${plugins[@]}"
