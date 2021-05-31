@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "1.4.31"
     id("com.github.johnrengelman.shadow") version "5.2.0"
+    `maven-publish`
 }
 
 group = "com.github.monulo"
@@ -28,5 +29,21 @@ tasks {
         var dest = File(rootDir, ".server/plugins")
         if(File(rootDir, shadowJar.get().archiveFileName.get()).exists()) dest = File(dest, "update")
         into(dest)
+    }
+    create<Jar>("sourcesJar") {
+        from(sourceSets["main"].allSource)
+        archiveClassifier.set("sources")
+    }
+    test {
+        useJUnitPlatform()
+    }
+}
+publishing {
+    publications {
+        create<MavenPublication>("Survival") {
+            artifactId = project.name
+            from(components["java"])
+            artifact(tasks["sourcesJar"])
+        }
     }
 }

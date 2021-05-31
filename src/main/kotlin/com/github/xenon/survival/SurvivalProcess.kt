@@ -101,7 +101,7 @@ class SurvivalProcess(
 
             val teamyaml = YamlConfiguration.loadConfiguration(teamFile)
             val teams = arrayListOf<SurvivalTeam>()
-            for((name, value) in teamyaml.getValues(false).filter { it.value is ConfigurationSection }) {
+            for((_, value) in teamyaml.getValues(false).filter { it.value is ConfigurationSection }) {
                 val section = value as ConfigurationSection
                 val team = SurvivalTeam(Bukkit.getScoreboardManager().mainScoreboard.getTeam(section.getString("name")!!)!!).apply {
                     alive = section.getBoolean("alive")
@@ -129,14 +129,12 @@ class SurvivalProcess(
     fun onUpdate() {
         onlineTeams.forEach {
             it.onUpdate()
-            if(!it.alive) {
-                onlineTeams.remove(it)
-            }
+            onlineTeams.removeIf { !it.alive }
         }
         if(surviveTeams.count() == 1) {
             stop()
             Bukkit.getOnlinePlayers().forEach {
-                it.sendTitle("게임 종료!", surviveTeams.first().team.name)
+                it.sendTitle("${surviveTeams.first().team.color}${surviveTeams.first().team.name.toString()}", "")
             }
         }
     }

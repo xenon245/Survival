@@ -31,7 +31,7 @@ class SurvivalTeam(val team: Team) {
         }
         offlinePlayers.forEach {
             val distance = currentPlayer?.location?.distance(it.player!!.location)
-            if(distance!! >= 100) {
+            if(distance!! >= 256) {
                 it.player?.teleport(currentPlayer!!.location)
             }
         }
