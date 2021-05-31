@@ -136,6 +136,7 @@ class SurvivalProcess(
             Bukkit.getOnlinePlayers().forEach {
                 it.sendTitle("${surviveTeams.first().team.color}${surviveTeams.first().team.name.toString()}", "")
             }
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "bf cancelall")
         }
     }
     fun team(player: Player): SurvivalTeam {
