@@ -6,6 +6,7 @@ import org.bukkit.entity.Player
 import org.bukkit.scoreboard.Team
 
 class SurvivalTeam(val team: Team) {
+    var inventory = SurvivalInventory()
     var alive = true
     var offlinePlayers = team.players
     var currentPlayer: Player? = null
@@ -39,5 +40,10 @@ class SurvivalTeam(val team: Team) {
     fun removePlayer(player: Player) {
         val p = Bukkit.getOfflinePlayer(player.uniqueId)
         offlinePlayers.remove(p)
+    }
+    fun onInitialize() {
+        team.players.forEach { p ->
+            inventory.patch(p.player!!)
+        }
     }
 }

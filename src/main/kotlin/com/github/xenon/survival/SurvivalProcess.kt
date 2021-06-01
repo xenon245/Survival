@@ -121,6 +121,7 @@ class SurvivalProcess(
             pluginManager.registerEvents(SurvivalListener(this@SurvivalProcess), plugin)
             task = scheduler.runTaskTimer(plugin, this@SurvivalProcess::onUpdate, 0L, 1L)
         }
+        onlineTeams.forEach { it.onInitialize() }
     }
     fun stop() {
         HandlerList.unregisterAll(plugin)
