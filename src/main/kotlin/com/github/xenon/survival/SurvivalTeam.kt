@@ -12,14 +12,16 @@ class SurvivalTeam(val team: Team) {
     var currentPlayer: Player? = null
     fun swap() {
         currentPlayer?.gameMode = GameMode.SPECTATOR
+        var i = 0
         offlinePlayers.forEachIndexed { index, p ->
             if(p.player == currentPlayer) {
-                if(offlinePlayers.size == index + 1) {
-                    currentPlayer = offlinePlayers.first().player
-                } else {
-                    currentPlayer = offlinePlayers.toList()[index + 1]?.player
-                }
+                i = index
             }
+        }
+        if(offlinePlayers.toList()[i + 1] == null) {
+            currentPlayer = offlinePlayers.toList().first().player
+        } else {
+            currentPlayer = offlinePlayers.toList()[i + 1].player
         }
     }
     fun onUpdate() {

@@ -135,7 +135,8 @@ class SurvivalProcess(
         if(surviveTeams.count() == 1) {
             stop()
             Bukkit.getOnlinePlayers().forEach {
-                it.sendTitle("${surviveTeams.first().team.color}${surviveTeams.first().team.name.toString()}", "")
+                it.sendMessage("게임 종료!")
+                it.sendTitle("${surviveTeams.first().team.color}${surviveTeams.first().team.color.name.toString()}", "")
             }
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "bf cancelall")
         }
